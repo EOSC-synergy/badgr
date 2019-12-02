@@ -5,7 +5,7 @@
 How to launch Badgr Server:
 
 ```sh
-docker run -d -p 8000:8000 eoscsynergy/badgr-server:devel
+docker run -d -p 8000:8000 eoscsynergy/badgr-server
 ```
 
 To modify the configuration file add a volume with the file:
@@ -59,7 +59,7 @@ http://servername:8000/staff/
 How to launch Badgr UI::
 
 ```sh
-docker run --name badgrui -p 80:80 -e BADGRSERVER="http://badgrserve:8000" -d eoscsynergy/badgr-ui:devel
+docker run --name badgrui -p 80:80 -e BADGRSERVER="http://badgrserve:8000" -d eoscsynergy/badgr-ui
 ```
 
 In this case only the env variable BADGRSERVER is needed to point to the URL of the Badgr server launched in the previous step.
