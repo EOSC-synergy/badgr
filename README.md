@@ -5,7 +5,7 @@
 How to launch Badgr Server:
 
 ```sh
-docker run -d -p 8000:8000 eoscsynergy/badgr-server
+docker run -d -p 8000:8000 -p 8443:8443 eoscsynergy/badgr-server
 ```
 
 To modify the configuration file add a volume with the file:
@@ -24,12 +24,19 @@ In the default sqlite database we have included a basic set of configuration ste
 
 * Superuser:
   * User: admin
-  * Passwd:  badgrpass
+  * Passwd: badgrpass
 
 But it can but also created inside the docker container using the command:
 
 ```sh
 /badgr/code/manage.py createsuperuser
+```
+
+It has HTTPS enabled at port 8443 with dummy certificates. Mount correct certificates as volumes:
+
+```sh
+-v "<local_path>/server.crt /etc/ssl/certs/server.crt"
+-v "<local_path>/server.key /etc/ssl/certs/server.key"
 ```
 
 ### Badgr App Configuration
@@ -59,7 +66,14 @@ http://servername:8000/staff/
 How to launch Badgr UI::
 
 ```sh
-docker run --name badgrui -p 80:80 -e BADGRSERVER="http://badgrserve:8000" -d eoscsynergy/badgr-ui
+docker run --name badgrui -p 80:80 -p 443:443 -e BADGRSERVER="http://badgrserver:8000" -d eoscsynergy/badgr-ui
+```
+
+It has HTTPS enabled at port 443 with dummy certificates. Mount correct certificates as volumes:
+
+```sh
+-v "<local_path>/server.crt /etc/ssl/certs/server.crt"
+-v "<local_path>/server.key /etc/ssl/certs/server.key"
 ```
 
 In this case only the env variable BADGRSERVER is needed to point to the URL of the Badgr server launched in the previous step.
