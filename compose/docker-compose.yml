@@ -23,6 +23,7 @@ services:
        - /tmp/badgr/settings_local.py:/badgr/code/apps/mainsite/settings_local.py
        - /tmp/badgr/server.crt:/etc/ssl/certs/server.crt
        - /tmp/badgr/server.key:/etc/ssl/certs/server.key
+       - /tmp/badgr/mediafiles:/badgr/code/mediafiles
      restart: always
 
    badgrui:
