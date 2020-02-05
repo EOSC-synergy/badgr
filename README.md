@@ -11,9 +11,8 @@ docker run -d -p 8000:8000 -p 8443:8443 eoscsynergy/badgr-server
 Badgr server stores images outside the D.B. in a local directory. To make them persist a volume must be added:
 
 ```sh
--v "<local_path>:/badgr/code/mediafiles" 
+-v "<local_path>:/badgr/code/mediafiles"
 ```
-
 
 To modify the configuration file add a volume with the file:
 
@@ -42,8 +41,8 @@ But it can but also created inside the docker container using the command:
 It has HTTPS enabled at port 8443 with dummy certificates. Mount correct certificates as volumes:
 
 ```sh
--v "<local_path>/server.crt /etc/ssl/certs/server.crt"
--v "<local_path>/server.key /etc/ssl/certs/server.key"
+-v "<local_path>/server.crt:/etc/ssl/certs/server.crt"
+-v "<local_path>/server.key:/etc/ssl/certs/server.key"
 ```
 
 ### Badgr App Configuration
