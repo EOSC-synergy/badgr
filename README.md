@@ -8,6 +8,13 @@ How to launch Badgr Server:
 docker run -d -p 8000:8000 -p 8443:8443 eoscsynergy/badgr-server
 ```
 
+Badgr server stores images outside the D.B. in a local directory. To make them persist a volume must be added:
+
+```sh
+-v "<local_path>:/badgr/code/mediafiles" 
+```
+
+
 To modify the configuration file add a volume with the file:
 
 ```sh
