@@ -12,6 +12,10 @@ RUN  sed -i '/"verify-prod-environment":/c\                "verify-prod-environm
 WORKDIR /badgr-ui
 
 RUN	npm install
+
+COPY os-logo-large.svg /badgr-ui/node_modules/@concentricsky/badgr-style/dist/images/os-logo-large.svg
+COPY os-logo-small.svg /badgr-ui/node_modules/@concentricsky/badgr-style/dist/images/os-logo-small.svg
+
 RUN	npm run build
 
 RUN ls -l /badgr-ui
@@ -19,7 +23,7 @@ RUN ls -l /badgr-ui
 # Stage 2
 FROM nginx:stable-alpine
 LABEL maintainer="Miguel Caballer <micafer1@upv.es>"
-LABEL version="v2.24.45-1"
+LABEL version="v2.24.45-2"
 LABEL description="Badgr UI image"
 
 COPY --from=node /badgr-ui/dist /usr/share/nginx/html
