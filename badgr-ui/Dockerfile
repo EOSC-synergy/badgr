@@ -23,14 +23,16 @@ RUN ls -l /badgr-ui
 # Stage 2
 FROM nginx:stable-alpine
 LABEL maintainer="Miguel Caballer <micafer1@upv.es>"
-LABEL version="v2.24.45-2"
+LABEL version="v2.24.45-3"
 LABEL description="Badgr UI image"
 
+RUN mkdir -p /usr/share/nginx/html/badgr
 COPY --from=node /badgr-ui/dist /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
 ENV BADGRSERVER http://badgrserver:8000
+ENV BASE_DIR /
 
 COPY run.sh /run.sh
 

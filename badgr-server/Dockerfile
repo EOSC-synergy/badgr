@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 LABEL maintainer="Miguel Caballer <micafer1@upv.es>"
-LABEL version="v2.24.1-1"
+LABEL version="v2.24.1-2"
 LABEL description="Badgr server image"
-EXPOSE 8800
+EXPOSE 8000 8443
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     apache2 \
@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     mkdir badgr && cd badgr && \
     git clone https://github.com/concentricsky/badgr-server.git --branch=v2.24.1 code  && \
     pip install wheel   && \
+    pip install rsa==4.5  && \
     pip install -r /badgr/code/requirements.txt && \
     pip install /badgr/code && \
     apt-get purge -y gcc git python-dev python-pip libmysqld-dev libssl-dev libxslt-dev libjpeg-turbo8-dev automake autoconf git-core git && \
