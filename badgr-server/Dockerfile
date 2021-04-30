@@ -22,11 +22,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libffi-dev \
     libssl-dev \
     libmysqlclient-dev \
+    libmysqlclient20 \
     python-cairo \
     python-setuptools && \
     mkdir badgr && cd badgr && \
     git clone https://github.com/concentricsky/badgr-server.git --branch=v2.24.1 code  && \
     pip install wheel   && \
+    pip install MySQL-python && \
     pip install rsa==4.5  && \
     pip install -r /badgr/code/requirements.txt && \
     pip install /badgr/code && \
